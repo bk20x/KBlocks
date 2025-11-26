@@ -1,0 +1,8 @@
+{
+  "green slime": {
+    "health": 60,
+    "speed": 50,
+    "damage": 15
+  }
+}
+
