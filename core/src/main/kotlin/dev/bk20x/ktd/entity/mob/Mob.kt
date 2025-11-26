@@ -1,9 +1,9 @@
 package dev.bk20x.ktd.entity.mob
 
-import com.badlogic.gdx.graphics.Texture
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.google.gson.JsonObject
-import dev.bk20x.ktd.Globals
+import com.badlogic.gdx.math.Vector2
+import dev.bk20x.ktd.Utils.getDirectionTo
 import dev.bk20x.ktd.animations.AnimatedEntity
 import dev.bk20x.ktd.data.GameDataLoader
 
@@ -16,18 +16,30 @@ open class Mob(name: String): AnimatedEntity() {
     init {
         this.name = name
         GameDataLoader.setMobValues(this)
-        val texturePath = "${Globals.MOB_ASSET_PATH}/${this.name}.png"
-        val texture = Texture(texturePath)
-        val mobAnimations = GameDataLoader.objFromFile<JsonObject>(Globals.MOB_ANIM_PATH)!!
-        this.setAnimations(mobAnimations, this.name, texture)
     }
 
     override fun update(delta: Float) {
         super.update(delta)
+        this.updateBody(delta)
     }
 
     override fun render(sb: SpriteBatch) {
-        this.playActiveAnimation(sb)
+        super.render(sb)
+    }
+
+    fun moveToTarget(target: Vector2){
+        val direction       = this.body.direction
+        val velocity        = this.body.velocity
+        this.body.direction = this.body.position.getDirectionTo(target)
+        velocity.set(direction.cpy().nor().scl(this.speed))
+    }
+
+
+    override fun updateBody(delta: Float) {
+        super.updateBody(delta)
+        val position  = this.body.position
+        val velocity  = this.body.velocity
+        position.add(velocity.scl(delta))
     }
 
     override fun dispose() {

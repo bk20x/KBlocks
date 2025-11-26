@@ -21,6 +21,10 @@ class EntityManager {
         entities[id] = entity
     }
 
+    fun getEntity(id: Int): Entity? {
+        return entities[id]
+    }
+
     private fun nextId(): Int = lastId++
 
 }

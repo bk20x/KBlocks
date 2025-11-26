@@ -17,10 +17,7 @@ class Tower(name: String): AnimatedEntity() {
     init {
         this.name = name
         GameDataLoader.setTowerValues(this)
-        val texturePath = "${Globals.TOWER_ASSET_PATH}/${this.name}.png"
-        val texture = Texture(texturePath)
-        val towerAnimations = GameDataLoader.objFromFile<JsonObject>(Globals.TOWER_ANIM_PATH)!!
-        this.setAnimations(towerAnimations, this.name, texture)
+        activeAnimation = "active"
     }
 
 

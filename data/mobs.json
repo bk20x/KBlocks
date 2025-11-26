@@ -1,8 +1,27 @@
 {
   "green slime": {
-    "health": 60,
-    "speed": 50,
-    "damage": 15
+    "health": 50,
+    "damage": 5,
+    "speed": 55,
+    "attack speed": 1
+  },
+  "blue slime": {
+    "health": 50,
+    "damage": 10,
+    "speed": 55,
+    "attack speed": 1
+  },
+  "orange slime": {
+    "health": 75,
+    "damage": 20,
+    "speed": 55,
+    "attack speed": 1
+  },
+  "purple slime": {
+    "health": 80,
+    "damage": 30,
+    "speed": 70,
+    "attack speed": 1
   }
 }
 

@@ -48,6 +48,10 @@ object GameState {
         }
     }
 
+    fun getEntity(id: Int): Entity {
+        return this.activeScene.entityManager.getEntity(id)!!
+    }
+
     private const val MIN_ZOOM = 0.5f
     private fun clampCamToSceneBounds() {
         val cam = this.camera
@@ -94,6 +98,8 @@ object GameState {
             cam.update(true)
         }
     }
+
+
 
 
 }

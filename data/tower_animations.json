@@ -1,6 +1,6 @@
 {
   "ArcherTower": {
-    "idle": {
+    "active": {
       "frameWidth": 65,
       "frameHeight": 129,
       "frameDuration": 0.25,

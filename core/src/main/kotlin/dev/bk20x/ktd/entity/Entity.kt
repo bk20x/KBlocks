@@ -13,13 +13,21 @@ open class Entity {
 
     val body = Body()
 
+
     open fun update(delta: Float) {
         stateTime += delta
+        this.updateBody(delta)
     }
 
     open fun render(sb: SpriteBatch) {
     }
 
+    open fun updateBody(delta: Float) {
+        val pos = body.position
+        val x = pos.x
+        val y = pos.y
+        body.bounds.setPosition(x, y)
+    }
 
     fun setPosition(x: Float, y: Float) {
         body.position.set(x, y)

@@ -33,6 +33,14 @@ open class AnimatedEntity: Entity() {
         }
     }
 
+    override fun render(sb: SpriteBatch) {
+        this.playActiveAnimation(sb)
+    }
+
+    override fun update(delta: Float) {
+        super.update(delta)
+    }
+
     override fun dispose(){
         for(animation in animations.values){
             animation.keyFrames.forEach {

@@ -9,6 +9,5 @@ function ArcherTower(x, y)
     local body   = result:getBody()
     body.position.x = x
     body.position.y = y
-    result:setActiveAnimation('idle')
     return result
 end
