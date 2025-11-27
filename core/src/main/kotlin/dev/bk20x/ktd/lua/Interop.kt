@@ -12,6 +12,7 @@ class Interop {
 
 
     init {
+
         lua.openLibraries()
         lua.setExternalLoader { path, _ ->
             try {

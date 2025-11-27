@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 class EntityManager {
 
-    var lastId: Int = 0
+    var lastId: Int = 1
     val entities = ConcurrentHashMap<Int, Entity>()
 
     fun update(batch: SpriteBatch, dt: Float) {

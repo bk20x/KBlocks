@@ -33,25 +33,25 @@ function Slime(color, x, y)
     return mob
 end
 
-local point = NewVector2(250, 250)
+local tow = ArcherTower(250, 250)
+AddEntity(tow)
 
+require('ui')
 function ScriptMain()
     DbgCam()
     GlobalEvents:run()
-    if KeyPressed(Keys.G) then
-        local clickPos = GetMousePos()
-        local mob = Slime('blue', clickPos.x, clickPos.y)
-        AddEntity(mob)
-    end
 
-    if MouseDown() then
-        point:set(GetMousePos().x, GetMousePos().y)
+    if MouseClicked() then
+        local pos = GetMousePos()
+        AddEntity( Slime('green', pos.x, pos.y) )
     end
-
-    for _, entity in pairs(GetEntities()) do
-        if entity:isMob() then
-            MoveToPoint(entity, point)
+    for _, v in pairs(GetEntities()) do
+        if v:isMob() then
+            AttackTarget(v, tow)
         end
+    end
+    if KeyPressed(Keys.G) then
+        ReinitUi()
     end
 
     if KeyPressed(Keys.ESCAPE) then

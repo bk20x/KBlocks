@@ -1,5 +1,8 @@
 Tower = java.import('dev.bk20x.ktd.towers.Tower')
+---@alias Tower Tower
 
+---@param  name string
+---@return Tower
 function NewTower(name)
     return java.new(Tower, name)
 end

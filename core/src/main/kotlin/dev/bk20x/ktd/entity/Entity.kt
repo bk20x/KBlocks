@@ -3,6 +3,7 @@ package dev.bk20x.ktd.entity
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.utils.Array
 import dev.bk20x.ktd.Body
 import dev.bk20x.ktd.entity.mob.Mob
 import dev.bk20x.ktd.towers.Tower
@@ -84,4 +85,11 @@ open class Entity {
     fun isMob():   Boolean = this is Mob
     fun isTower(): Boolean = this is Tower
 
+    fun inspect(): Array<String>  {
+        return Array<String>().apply {
+            add("$name $${id} ")
+            add("health=$health")
+            add("position=${body.position}")
+        }
+    }
 }

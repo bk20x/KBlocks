@@ -5,9 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import dev.bk20x.ktd.entity.Entity
 import dev.bk20x.ktd.lua.LuaRt
+import dev.bk20x.ktd.ui.UIState
 import ktx.graphics.use
-import party.iroiro.luajava.value.LuaTableValue
-import party.iroiro.luajava.value.LuaValue
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -18,16 +17,22 @@ object GameState {
     var camera: OrthographicCamera = OrthographicCamera()
     lateinit var activeScene: Scene
     var isSceneActive = false
-    val sb = SpriteBatch()
+    val batch = SpriteBatch()
+
+    init {
+        camera.setToOrtho(false, 640f, 360f)
+    }
+
 
     fun run(delta: Float) {
         if(!::activeScene.isInitialized) return
         clampCamToSceneBounds()
-        sb.use { batch ->
+        batch.use { sb ->
             activeScene.setView(camera)
-            activeScene.render(batch, delta)
+            activeScene.render(sb, delta)
             LuaRt.callFunc("ScriptMain")
         }
+        UIState.render(delta)
     }
 
     fun setView(camera: OrthographicCamera) {
@@ -51,8 +56,11 @@ object GameState {
         }
     }
 
-    fun getEntity(id: Int): Entity {
-        return this.activeScene.entityManager.getEntity(id)!!
+    fun getEntity(id: Int): Entity? {
+        return if(this.activeScene.entityManager.entities.containsKey(id))
+            this.activeScene.entityManager.getEntity(id)!!
+         else
+            null
     }
 
     private const val MIN_ZOOM = 0.5f
@@ -104,4 +112,5 @@ object GameState {
 
     fun getEntities(): MutableMap<Int, Entity> = activeScene.entityManager.entities
 
+    fun isInitialized(): Boolean { return this::activeScene.isInitialized }
 }

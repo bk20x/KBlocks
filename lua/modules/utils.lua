@@ -41,16 +41,18 @@ function GetDeltaTime()
     return Gdx.graphics:getDeltaTime()
 end
 
+CardinalDirection = java.import('dev.bk20x.ktd.types.CardinalDirection')
+---@alias CardinalDirection CardinalDirection
+
+
+---@param   direction Vector2
+---@return  CardinalDirection
+function CardinalFromVector(direction)
+    return CardinalDirection.Companion:fromVector(direction)
+end
+
 
 function Put(obj)
     local System = java.import('java.lang.System')
     System.out:println(obj)
-end
-
-
-
-CardinalDirection = java.import('dev.bk20x.ktd.types.CardinalDirection')
-
-function CardinalFromVector(direction)
-    return CardinalDirection.Companion:fromVector(direction)
 end

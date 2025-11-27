@@ -2,9 +2,11 @@ package dev.bk20x.ktd
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
+import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera
 import dev.bk20x.ktd.lua.LuaRt
 import dev.bk20x.ktd.types.CardinalDirection
+import dev.bk20x.ktd.ui.UIState
 
 import ktx.app.KtxGame
 import ktx.app.KtxScreen
@@ -16,17 +18,14 @@ import ktx.async.KtxAsync
 class Main : KtxGame<KtxScreen>() {
     override fun create() {
         KtxAsync.initiate()
-        addScreen(FirstScreen())
-        setScreen<FirstScreen>()
+        addScreen(GameScreen())
+        setScreen<GameScreen>()
     }
 }
 
-class FirstScreen : KtxScreen {
+class GameScreen : KtxScreen {
     init {
         LuaRt.loadModule("main")
-        val camera = OrthographicCamera()
-        camera.setToOrtho(false, 640f, 360f)
-        GameState.setView(camera)
     }
 
     override fun render(delta: Float) {
@@ -37,7 +36,12 @@ class FirstScreen : KtxScreen {
         }
     }
 
+    override fun resize(width: Int, height: Int) {
+        super.resize(width, height)
+        UIState.resize(width, height)
+    }
     override fun dispose() {
 
     }
+
 }

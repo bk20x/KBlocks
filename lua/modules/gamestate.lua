@@ -15,3 +15,9 @@ end
 function GetEntities()
     return java.luaify(GameState:getEntities())
 end
+
+---@param  id number
+---@return Entity
+function GetEntity(id)
+    return GameState:getEntity(id)
+end
