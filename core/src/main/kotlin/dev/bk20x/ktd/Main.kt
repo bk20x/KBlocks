@@ -3,6 +3,8 @@ package dev.bk20x.ktd
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.OrthographicCamera
+import dev.bk20x.ktd.lua.LuaRt
+import dev.bk20x.ktd.types.CardinalDirection
 
 import ktx.app.KtxGame
 import ktx.app.KtxScreen

@@ -19,10 +19,12 @@ open class AnimatedEntity: Entity() {
             }
             field = anim
         }
+    var animationFinished: Boolean = false
 
     fun playActiveAnimation(sb: SpriteBatch) {
         val animation = animations[activeAnimation] ?: return
         sb.draw(animation.getKeyFrame(stateTime, true), getX(), getY())
+        animationFinished = animation.isAnimationFinished(stateTime)
     }
 
     open fun setAnimations(animationObj: JsonObject, name: String, texture: Texture) {
@@ -54,4 +56,7 @@ open class AnimatedEntity: Entity() {
         animations[name] = animation
     }
 
+    fun resetAnimationTime() {
+        stateTime = 0f
+    }
 }

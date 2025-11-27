@@ -12,7 +12,7 @@ class Tower(name: String): AnimatedEntity() {
 
 
     var cost:   Int = 0
-    var health: Float = 0f
+
 
     init {
         this.name = name
@@ -40,6 +40,6 @@ class Tower(name: String): AnimatedEntity() {
     }
 
     override fun toString(): String {
-        return "Tower(name='$name', cost=$cost, health=$health)"
+        return "Tower(name='$name', cost=$cost, health=$health, position=${this.getPosition()}, alive=$alive)"
     }
 }

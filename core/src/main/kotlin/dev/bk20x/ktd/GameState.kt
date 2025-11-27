@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import dev.bk20x.ktd.entity.Entity
+import dev.bk20x.ktd.lua.LuaRt
 import ktx.graphics.use
+import party.iroiro.luajava.value.LuaTableValue
+import party.iroiro.luajava.value.LuaValue
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -66,7 +69,7 @@ object GameState {
 
         val maxZoomX = worldWidth / cam.viewportWidth
         val maxZoomY = worldHeight / cam.viewportHeight
-        var maxZoom = maxZoomX.coerceAtMost(maxZoomY)
+        var maxZoom  = maxZoomX.coerceAtMost(maxZoomY)
         if (maxZoom.isNaN() || maxZoom <= 0f) {
             maxZoom = 1f
         }
@@ -99,7 +102,6 @@ object GameState {
         }
     }
 
-
-
+    fun getEntities(): MutableMap<Int, Entity> = activeScene.entityManager.entities
 
 }

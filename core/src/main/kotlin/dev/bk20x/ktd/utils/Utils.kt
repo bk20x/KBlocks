@@ -1,4 +1,4 @@
-package dev.bk20x.ktd
+package dev.bk20x.ktd.utils
 
 import com.badlogic.gdx.math.Vector2
 

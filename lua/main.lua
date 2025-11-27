@@ -1,5 +1,5 @@
-require('event/event')
 require('core')
+require('event/event')
 GlobalEvents = Events:New()
 
 local function DbgCam()
@@ -24,17 +24,36 @@ local function DbgCam()
     end
 end
 
+SetScene(NewScene('Plains1'))
 
-local scene = NewScene('Plains1')
-SetScene(scene)
+function Slime(color, x, y)
+    local mob = NewMob(color .. ' slime')
+    mob:setPosition(x, y)
+    mob:getBounds():setSize(32, 32)
+    return mob
+end
+
+local point = NewVector2(250, 250)
 
 function ScriptMain()
     DbgCam()
     GlobalEvents:run()
-    if MouseClicked() then
+    if KeyPressed(Keys.G) then
         local clickPos = GetMousePos()
-        AddEntity(ArcherTower(clickPos.x, clickPos.y))
+        local mob = Slime('blue', clickPos.x, clickPos.y)
+        AddEntity(mob)
     end
+
+    if MouseDown() then
+        point:set(GetMousePos().x, GetMousePos().y)
+    end
+
+    for _, entity in pairs(GetEntities()) do
+        if entity:isMob() then
+            MoveToPoint(entity, point)
+        end
+    end
+
     if KeyPressed(Keys.ESCAPE) then
         Gdx.app:exit()
     end

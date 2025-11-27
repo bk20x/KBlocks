@@ -9,5 +9,6 @@ function ArcherTower(x, y)
     local body   = result:getBody()
     body.position.x = x
     body.position.y = y
+    body.bounds:setSize(65, 129)
     return result
 end

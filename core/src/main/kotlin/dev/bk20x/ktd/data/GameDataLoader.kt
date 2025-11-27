@@ -37,11 +37,12 @@ object GameDataLoader {
             return
         }
         if (!mobs.has(mob.name)) return
-        val mobData = mobs[mob.name].asJsonObject
-        mob.health  = mobData["health"].asFloat
-        mob.speed   = mobData["speed"].asFloat
-        mob.damage  = mobData["damage"].asFloat
-
+        val mobData   = mobs[mob.name].asJsonObject
+        mob.health    = mobData["health"].asFloat
+        mob.speed     = mobData["speed"].asFloat
+        mob.damage    = mobData["damage"].asFloat
+        mob.range     = mobData["range"].asFloat
+        mob.atkSpeed  = mobData["attack speed"].asFloat
         val texturePath   = "${Globals.MOB_ASSET_PATH}/${mob.name}.png"
         val texture       = Texture(texturePath)
         val mobAnimations = objFromFile<JsonObject>(Globals.MOB_ANIM_PATH)!!
@@ -80,4 +81,6 @@ object GameDataLoader {
         val towerAnimations     = objFromFile<JsonObject>(Globals.TOWER_ANIM_PATH)!!
         tower.setAnimations(towerAnimations, tower.name, texture)
     }
+
+
 }
